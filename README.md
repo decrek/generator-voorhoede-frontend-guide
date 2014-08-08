@@ -1,4 +1,4 @@
-# generator-voorhoede-front-end-guide [![Build Status](https://secure.travis-ci.org/decrek/generator-voorhoede-front-end-guide.png?branch=master)](https://travis-ci.org/decrek/generator-voorhoede-front-end-guide)
+# generator-voorhoede-front-end-guide [![Build Status](https://travis-ci.org/decrek/generator-voorhoede-frontend-guide.svg?branch=master)](https://travis-ci.org/decrek/generator-voorhoede-front-end-guide)
 
 > [Yeoman](http://yeoman.io) generator
 
