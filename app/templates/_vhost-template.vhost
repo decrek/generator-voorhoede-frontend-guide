@@ -1,0 +1,9 @@
+<VirtualHost *:8888>
+	ServerName local.<%= site_name %>.voorhoede.nl
+	DocumentRoot "<%= cwd %>/web"
+</VirtualHost>
+
+<VirtualHost *:8888>
+	ServerName distribution.<%= site_name %>.voorhoede.nl
+	DocumentRoot "<%= cwd %>/distribution"
+</VirtualHost>
