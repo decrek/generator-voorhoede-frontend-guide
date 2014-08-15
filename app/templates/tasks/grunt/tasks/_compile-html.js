@@ -48,7 +48,6 @@ module.exports = function (grunt) {
 					'pathToAssets': compiler.pathToAssets,
 					'pathToGuide': './',
 					'pathToStubs': webRoot + 'stubs/',
-                    'twhConfig' : grunt.file.read('source/assets/scripts/config.js'),
 					'mode': mode
 				});
 				grunt.file.write(viewsDir + filename, html);
