@@ -1,2 +1,13 @@
 node_modules/
 temp/
+
+# Editor/IDE files
+*.iml
+*.ipr
+*.iws
+.idea
+*.sublime-workspace
+*.swp
+nb-configuration.xml
+nbactions.xml
+nbproject/private
