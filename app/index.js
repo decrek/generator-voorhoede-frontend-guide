@@ -102,7 +102,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
 //          this.mkdir('source/assets/grunticon-svgs');
 //        }
         this.mkdir('source/assets/scripts');
-        this.copy('source/assets/_scripts.json', '');
+        this.copy('source/assets/_scripts.json', 'source/assets/scripts.json');
 
         // make modules scaffold
         this.mkdir('source/modules');
@@ -175,6 +175,8 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         }
         this.copy('tasks/grunt/tasks/_task-wizard.js', 'tasks/grunt/tasks/task-wizard.js');
 
+        // make Gruntfile
+        this.template("_Gruntfile.js", "Gruntfile.js", context);
 
 
 

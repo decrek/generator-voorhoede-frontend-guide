@@ -10,12 +10,12 @@ module.exports = function (grunt) {
         'copy',
         'csslint',
         'cssmin',
-        'grunticon',
+//        'grunticon',
         'jsbeautifier',
         'jshint',
         'prompt',<% if (cssPreprocessor === 'sass' || cssPreprocessor === 'sass-compass') { %>
         'sass',<% } %>
-        'svgmin',
+//        'svgmin',
         'uglify',
         'watch'
     ]);
