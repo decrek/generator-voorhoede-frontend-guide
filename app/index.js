@@ -101,8 +101,6 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.mkdir('source/assets/scripts');
         this.copy('source/assets/_scripts.json', '');
 
-        // todo: make scripts.json
-
         // make modules scaffold
         this.mkdir('source/modules');
         this.mkdir('source/modules/components');
@@ -119,6 +117,38 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.mkdir('tasks/grunt/tasks');
         this.mkdir('tasks/grunt/templates');
         this.mkdir('tasks/grunt/utilities');
+        // TODO: phing folder, java folder
+
+        // copy grunt tasks
+        this.copy('tasks/grunt/tasks/_compile-html.js', 'tasks/grunt/tasks/compile-html.js');
+        this.copy('tasks/grunt/tasks/_compile-index.js', 'tasks/grunt/tasks/compile-index.js');
+        this.copy('tasks/grunt/tasks/_compile-preview-object.js', 'tasks/grunt/tasks/compile-preview-object.js');
+        this.copy('tasks/grunt/tasks/_compile-previews.js', 'tasks/grunt/tasks/compile-previews.js');
+        this.copy('tasks/grunt/tasks/_create-component.js', 'tasks/grunt/tasks/create-component.js');
+        this.copy('tasks/grunt/tasks/_create-task.js', 'tasks/grunt/tasks/create-task.js');
+        this.copy('tasks/grunt/tasks/_create-task-configuration.js', 'tasks/grunt/tasks/create-task-configuration.js');
+        this.copy('tasks/grunt/tasks/_create-view.js', 'tasks/grunt/tasks/create-view.js');
+        this.template("tasks/grunt/tasks/_deploy.js", "tasks/grunt/tasks/deploy.js", context);
+        this.template("tasks/grunt/tasks/_develop.js", "tasks/grunt/tasks/develop.js", context);
+        this.template("tasks/grunt/tasks/_develop-server.js", "tasks/grunt/tasks/develop-server.js", context);
+
+//        if (this.karma) {
+//          this.copy('tasks/grunt/tasks/_karma.js', 'tasks/grunt/tasks/karma.js');
+//        }
+
+        this.copy('tasks/grunt/tasks/_list-modules.js', 'tasks/grunt/tasks/list-modules.js');
+        this.copy('tasks/grunt/tasks/_list-tasks.js', 'tasks/grunt/tasks/list-tasks.js');
+        this.copy('tasks/grunt/tasks/_remove-component.js', 'tasks/grunt/tasks/remove-component.js');
+        this.copy('tasks/grunt/tasks/_remove-view.js', 'tasks/grunt/tasks/remove-view.js');
+        if (this.cssPreprocessor === 'sass' || this.cssPreprocessor === 'sass-compass') {
+            this.copy('tasks/grunt/tasks/_sass-and-lint.js', 'tasks/grunt/tasks/sass-and-lint.js');
+        }
+        this.copy('tasks/grunt/tasks/_task-wizard.js', 'tasks/grunt/tasks/task-wizard.js');
+
+
+
+
+
 
         if (this.vhost) {
             this.template("_vhost-template.vhost", "source/" + context.site_name + ".vhost", context);
