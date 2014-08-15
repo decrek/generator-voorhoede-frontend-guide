@@ -85,6 +85,12 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
     },
 
     app: function () {
+        // set variables to context
+        var context = {
+            site_name: this.appName,
+            cwd: process.cwd(),
+            cssPreprocessor: this.cssPreprocessor
+        };
 
         // make base dir
         this.mkdir('source');
@@ -93,13 +99,15 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.mkdir('source/assets');
         this.mkdir('source/assets/images');
         this.mkdir('source/assets/scripts');
+        this.copy('source/assets/_scripts.json', '');
+
         // todo: make scripts.json
 
         // make modules scaffold
         this.mkdir('source/modules');
         this.mkdir('source/modules/components');
         this.mkdir('source/modules/views');
-        // todo: make index.json
+        this.copy('source/modules/_index.json', 'source/modules/index.json');
 
         // make vendor scaffold
         this.mkdir('source/vendor');
@@ -112,13 +120,6 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.mkdir('tasks/grunt/templates');
         this.mkdir('tasks/grunt/utilities');
 
-
-        // set variables to context
-        var context = {
-            site_name: this.appName,
-            cwd: process.cwd(),
-            cssPreprocessor: this.cssPreprocessor
-        };
         this.template("_index.html", "source/index.html", context);
 
         if (this.vhost) {
