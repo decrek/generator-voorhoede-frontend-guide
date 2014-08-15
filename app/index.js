@@ -120,8 +120,6 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.mkdir('tasks/grunt/templates');
         this.mkdir('tasks/grunt/utilities');
 
-        this.template("_index.html", "source/index.html", context);
-
         if (this.vhost) {
             this.template("_vhost-template.vhost", "source/" + context.site_name + ".vhost", context);
         }
