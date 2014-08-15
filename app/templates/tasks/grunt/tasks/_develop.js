@@ -6,8 +6,8 @@ module.exports = function (grunt) {
         function (mode) {
 
             var tasks = [
-                'svgmin',
-                'grunticon',
+//                'svgmin',
+//                'grunticon',
                 'copy:development',
                 'compile-html:development',
                 'compile-previews:development',

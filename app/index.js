@@ -108,6 +108,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.mkdir('source/modules');
         this.mkdir('source/modules/components');
         this.mkdir('source/modules/views');
+        this.mkdir('source/modules/chapters');
         this.copy('source/modules/_index.json', 'source/modules/index.json');
 
         // make vendor scaffold
@@ -149,8 +150,6 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.copy('tasks/grunt/configuration/_uglify.js', 'tasks/grunt/configuration/uglify.js');
         this.copy('tasks/grunt/configuration/_watch.js', 'tasks/grunt/configuration/watch.js');
 
-
-
         // setup grunt tasks
         this.copy('tasks/grunt/tasks/_compile-html.js', 'tasks/grunt/tasks/compile-html.js');
         this.copy('tasks/grunt/tasks/_compile-index.js', 'tasks/grunt/tasks/compile-index.js');
@@ -174,6 +173,12 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             this.copy('tasks/grunt/tasks/_sass-and-lint.js', 'tasks/grunt/tasks/sass-and-lint.js');
         }
         this.copy('tasks/grunt/tasks/_task-wizard.js', 'tasks/grunt/tasks/task-wizard.js');
+
+        // setup grunt utilities
+        this.copy('tasks/grunt/utilities/_camelize.js', 'tasks/grunt/utilities/camelize.js');
+        this.copy('tasks/grunt/utilities/_html-compiler.js', 'tasks/grunt/utilities/html-compiler.js');
+        this.copy('tasks/grunt/utilities/_modules-index.js', 'tasks/grunt/utilities/modules-index.js');
+        this.copy('tasks/grunt/utilities/_prompt.js', 'tasks/grunt/utilities/prompt.js');
 
         // make Gruntfile
         this.template("_Gruntfile.js", "Gruntfile.js", context);
