@@ -98,6 +98,9 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         // make assets scaffold
         this.mkdir('source/assets');
         this.mkdir('source/assets/images');
+//        if (this.grunticon) {
+//          this.mkdir('source/assets/grunticon-svgs');
+//        }
         this.mkdir('source/assets/scripts');
         this.copy('source/assets/_scripts.json', '');
 
@@ -119,7 +122,36 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.mkdir('tasks/grunt/utilities');
         // TODO: phing folder, java folder
 
-        // copy grunt tasks
+        // setup grunt configuration
+        this.copy('tasks/grunt/configuration/_bump.js', 'tasks/grunt/configuration/bump.js');
+        this.copy('tasks/grunt/configuration/_clean.js', 'tasks/grunt/configuration/clean.js');
+        this.copy('tasks/grunt/configuration/_compress.js', 'tasks/grunt/configuration/compress.js');
+        this.copy('tasks/grunt/configuration/_concat.js', 'tasks/grunt/configuration/concat.js');
+        this.copy('tasks/grunt/configuration/_connect.js', 'tasks/grunt/configuration/connect.js');
+        this.copy('tasks/grunt/configuration/_connect.js', 'tasks/grunt/configuration/connect.js');
+        this.copy('tasks/grunt/configuration/_copy.js', 'tasks/grunt/configuration/copy.js');
+        this.copy('tasks/grunt/configuration/_csslint.js', 'tasks/grunt/configuration/csslint.js');
+        this.template("tasks/grunt/configuration/_cssmin.js", "tasks/grunt/configuration/cssmin.js", context);
+//        if (this.grunticon) {
+//          this.copy('tasks/grunt/configuration/_grunticon.js', 'tasks/grunt/configuration/grunticon.js');
+//        }
+        this.copy('tasks/grunt/configuration/_index.js', 'tasks/grunt/configuration/index.js');
+        this.copy('tasks/grunt/configuration/_jsbeautifier.js', 'tasks/grunt/configuration/jsbeautifier.js');
+        this.copy('tasks/grunt/configuration/_jshint.js', 'tasks/grunt/configuration/jshint.js');
+        this.copy('tasks/grunt/configuration/_prompt.js', 'tasks/grunt/configuration/prompt.js');
+        this.copy('tasks/grunt/configuration/_prompt.js', 'tasks/grunt/configuration/prompt.js');
+        if (this.cssPreprocessor === 'sass' || this.cssPreprocessor === 'sass-compass') {
+            this.copy('tasks/grunt/configuration/_sass.js', 'tasks/grunt/configuration/sass.js');
+        }
+//        if (this.svgMinification) {
+//            this.copy('tasks/grunt/configuration/_svgmin.js', 'tasks/grunt/configuration/svgmin.js');
+//        }
+        this.copy('tasks/grunt/configuration/_uglify.js', 'tasks/grunt/configuration/uglify.js');
+        this.copy('tasks/grunt/configuration/_watch.js', 'tasks/grunt/configuration/watch.js');
+
+
+
+        // setup grunt tasks
         this.copy('tasks/grunt/tasks/_compile-html.js', 'tasks/grunt/tasks/compile-html.js');
         this.copy('tasks/grunt/tasks/_compile-index.js', 'tasks/grunt/tasks/compile-index.js');
         this.copy('tasks/grunt/tasks/_compile-preview-object.js', 'tasks/grunt/tasks/compile-preview-object.js');
@@ -131,11 +163,9 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.template("tasks/grunt/tasks/_deploy.js", "tasks/grunt/tasks/deploy.js", context);
         this.template("tasks/grunt/tasks/_develop.js", "tasks/grunt/tasks/develop.js", context);
         this.template("tasks/grunt/tasks/_develop-server.js", "tasks/grunt/tasks/develop-server.js", context);
-
 //        if (this.karma) {
 //          this.copy('tasks/grunt/tasks/_karma.js', 'tasks/grunt/tasks/karma.js');
 //        }
-
         this.copy('tasks/grunt/tasks/_list-modules.js', 'tasks/grunt/tasks/list-modules.js');
         this.copy('tasks/grunt/tasks/_list-tasks.js', 'tasks/grunt/tasks/list-tasks.js');
         this.copy('tasks/grunt/tasks/_remove-component.js', 'tasks/grunt/tasks/remove-component.js');
@@ -157,7 +187,6 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         // handle css preprocessors
         if (this.cssPreprocessor === 'sass' ) {
             this.mkdir('source/assets/scss');
-            this.template('tasks/grunt/configuration/_sass.js','tasks/grunt/configuration/sass.js')
         } else if (this.cssPreprocessor === 'sass-compass') {
             this.mkdir('source/assets/scss');
         } else if (this.cssPreprocessor === 'less') {
