@@ -1,0 +1,22 @@
+{% extends "views/_guide/guide.html" %}
+{% import  "views/_guide/guide.html" as guide %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ webRoot }}guide/vendor/prismjs/prism.css">
+{% endblock %}
+
+{% block maincontent %}
+
+<div class="app-guide-chapter-content">
+{{ code.markdown }}
+</div>
+	
+{% endblock %}
+
+
+{% block scripts %}
+{{ super() }}
+<script src="{{ webRoot }}/guide/vendor/prismjs/prism.js"></script>
+
+{% endblock %}

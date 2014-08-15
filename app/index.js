@@ -111,6 +111,17 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.mkdir('source/modules/chapters');
         this.copy('source/modules/_index.json', 'source/modules/index.json');
 
+        // setup frontend guide templates
+        this.copy('source/modules/views/_app-index/_app-index.html', 'source/modules/views/_app-index/app-index.html');
+        this.copy('source/modules/views/_base-view/_base-view.html', 'source/modules/views/_base-view/base-view.html');
+        this.copy('source/modules/views/_chapter-template/_chapter-template.html', 'source/modules/views/_chapter-template/chapter-template.html');
+        this.copy('source/modules/views/_component-previewer/_component-previewer.html', 'source/modules/views/_component-previewer/component-previewer.html');
+        this.copy('source/modules/views/_component-previewer/_component-previewer-object.html', 'source/modules/views/_component-previewer/component-previewer-object.html');
+        this.copy('source/modules/views/_component-previewer/_README.MD', 'source/modules/views/_component-previewer/README.MD');
+        this.copy('source/modules/views/_guide/_guide.html', 'source/modules/views/_guide/guide.html');
+        // undescore in output is correct(check why)
+        this.copy('source/modules/views/_style-guide/_style-guide.html', 'source/modules/views/_style-guide/_style-guide.html');
+
         // make vendor scaffold
         this.mkdir('source/vendor');
 

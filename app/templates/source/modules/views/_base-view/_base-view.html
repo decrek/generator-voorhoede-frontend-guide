@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="no-js fr" lang="nl-be"> <!-- lang should be fr-be on french version-->
+<head>
+	<title>
+		{% block title %}
+		{{ name | capitalize }} | {{ project.title }}
+		{% endblock %}
+	</title>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+	<meta name="robots" content="index, follow"/>
+	<meta name="apple-itunes-app" content="app-id=567722021" />
+	<meta name="description" content="De grootste zoekertjes site voor tweedehands en nieuwe koopjes in uw buurt. Plaats nu een gratis zoekertje. Eenvoudig, snel en 100% gratis." />
+	<meta name="viewport" content="width=device-width initial-scale=1" />
+
+	<!--
+	the open graph meta tags should be zoekertje specific on the vip page,
+	and generic for generic pages.
+	-->
+	<meta property="og:title" content="title zoekertje" />
+	<meta property="og:image" content="https://ssl.gstatic.com/s2/oz/images/widget/cfg_snippet_example_gplus_overlay_450x154_6869ba16bec7c50806483fc7064d4b00.png" />
+	<meta property="og:description" content="beschrijving zoekertje" />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="2dehands.be" />
+	<meta property="og:locale" content="fr_BE" />
+
+	<meta property="fb:app_id" content="###" />
+	<meta property="fb:page_id" content="###" />
+
+	<link rel="shortcut icon" href="{{ pathToAssets }}images/favicon.ico" type="image/ico" />
+	<link rel="publisher" href="https://plus.google.com/#" />
+	<link rel="alternate" hreflang="fr-be" href="http://www.2emain.be/" />
+	<link rel="canonical" href="http://www.2emain.be/" />
+
+	<script>
+		(function (e) {
+			e.className = e.className.replace('no-js','js');
+		}(document.documentElement));
+	</script>
+
+	<script>
+		/* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */
+		window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!(!t.document.createElementNS||!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),o=function(o){var r=t.document.createElement("link"),a=t.document.getElementsByTagName("script")[0];r.rel="stylesheet",r.href=e[o&&n?0:o?1:2],a.parentNode.insertBefore(r,a)},r=new t.Image;r.onerror=function(){o(!1)},r.onload=function(){o(1===r.width&&1===r.height)},r.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};
+		grunticon(["{{ pathToAssets }}images/grunticon-output/icons.data.svg.css", "{{ pathToAssets }}images/grunticon-output/icons.data.png.css", "{{ pathToAssets }}images/grunticon-output/icons.fallback.css"]);
+	</script>
+	<noscript>
+		<link rel="stylesheet" href="{{ pathToAssets }}images/grunticon-output/icons.fallback.css" />
+	</noscript>
+
+	{% block styles %}
+	<link rel="stylesheet" href="{{ pathToAssets }}style/main.css" />
+    <!--  respond.js  -->
+	<script>
+		// feature test borrowed from: https://github.com/scottjehl/Respond/blob/master/src/respond.js#L68
+		(function(w){
+			var supportsMediaQueries = w.matchMedia && w.matchMedia('only all') !== null && w.matchMedia('only all').matches;
+			if(!supportsMediaQueries){
+				document.write('<script src="{{pathToAssets}}scripts/respond.js"><\/script>');
+			}
+		}(window));
+	</script>
+
+
+	<!-- TODO: check if this can be moved to the tail -->
+	<!-- Google DFP-->
+	<script type="text/javascript">
+		var googletag = googletag || {};
+		googletag.cmd = googletag.cmd || [];
+		(function() {
+			var gads = document.createElement("script");
+			gads.async = true;
+			gads.type = "text/javascript";
+			var useSSL = "https:" == document.location.protocol;
+			gads.src = (useSSL ? "https:" : "http:") + "//www.googletagservices.com/tag/js/gpt.js";
+			var node =document.getElementsByTagName("script")[0];
+			node.parentNode.insertBefore(gads, node);
+		})();
+	</script>
+
+	{% endblock %}
+</head>
+<body>
+	<!-- use data attributes to target in JS -->
+	<div id="page">
+		{% block header %}
+		{% endblock %}
+
+		{% block content %}
+		Include content here
+		{% endblock %}
+
+		{% block footer %}
+			{% include "components/site-footer/_site-footer.html" %}
+		{% endblock %}
+
+		{% if (mode == 'development') %}
+		<script src="//localhost:35729/livereload.js"></script>
+		{% endif %}
+
+		{% block scripts %}
+
+		<script>{{ twhConfig }}</script>
+
+		<script src="{{ pathToAssets + 'scripts/vendor.js' }}"></script>
+		<script src="{{ pathToAssets + 'scripts/main.js' }}"></script>
+		{% endblock %}
+	</div>
+</body>
+</html>

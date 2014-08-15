@@ -1,0 +1,107 @@
+{% extends "views/_base-view/base-view.html" %}
+
+{% macro linkSection(section) %}
+<a href="{{ '#section-' + section }}"
+   class="app-guide-permalink app-guide-icon"
+   title="permalink to this section"></a>
+{% endmacro %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ pathToAssets + 'style/main.css' }}">
+<link rel="stylesheet" href="{{ pathToGuide }}/guide.css">
+{% endblock %}
+
+{% block header %}
+<header class="app-guide-content">
+	<h1>{{ project.title }} - Front-end Guide</h1>
+</header>
+{% endblock %}
+
+{% block content %}
+<nav class="app-guide-nav">
+	<button class="ui-button-primary app-guide-toggle-menu js-toggle-menu">close menu</button>
+	<h3><a href="{{ webRoot + 'index.html' }}">Home</a></h3>
+
+	{% if components.length > 0 %}
+	<h3>Components</h3>
+	<ul>
+		{% for component in components %}
+		<li>
+			<a href="{{ webRoot + 'modules/components/' + component + '/' + 'preview.html' }}">
+				{{ component | replace("-"," ") | capitalize }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	{% if chapters.length > 0 %}
+	<h3>Documentation</h3>
+	<ul>
+		{% for chapter in chapters %}
+		<li>
+			<a href="{{ webRoot + 'modules/chapters/' + chapter + '/' + chapter + '.html' }}">
+				{{ chapter | replace("-"," ") | capitalize }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	{% if views.length > 0 %}
+	<h3>Views</h3>
+	<ul>
+		{% for view in views %}
+		<li>
+			<a href="{{ webRoot + 'modules/views/' + view + '/' + view + '.html' }}">
+				{{ view | replace("-"," ") | capitalize }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+</nav>
+
+<main class="app-guide-main">
+	{% block maincontent %}
+
+	{% endblock %}
+</main>
+
+{% endblock %}
+
+
+{% block footer %}
+<footer class="app-guide-footer">
+	This page is generated using <a href="http://voorhoede.nl">De Voorhoede</a>'s template builder
+</footer>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+	(function(){
+		var nav = document.querySelector('.app-guide-nav'),
+			main = document.querySelector('.app-guide-main'),
+			toggleMenu = document.querySelector('.js-toggle-menu');
+
+		toggleMenu.addEventListener('click', function(event){
+			nav.classList.contains('is-hidden') ? expand() : collapse();
+		}, false);
+
+		var expand = function expand(){
+			nav.classList.remove('is-hidden');
+			main.classList.remove('nav-is-closed');
+			toggleMenu.innerHTML = 'close menu';
+		};
+
+		var collapse = function collapse(){
+			nav.classList.add('is-hidden');
+			main.classList.add('nav-is-closed');
+			toggleMenu.innerHTML = 'open menu';
+		};
+
+	})();
+</script>
+
+{% endblock %}
