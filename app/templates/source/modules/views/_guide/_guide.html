@@ -8,65 +8,129 @@
 
 {% block styles %}
 <link rel="stylesheet" href="{{ pathToAssets + 'style/main.css' }}">
+<link rel="stylesheet" href="{{ pathToGuide }}/voorhoede-core-styles.css">
+<link rel="stylesheet" href="{{ pathToGuide }}/core-layout.css">
 <link rel="stylesheet" href="{{ pathToGuide }}/guide.css">
 {% endblock %}
 
-{% block header %}
-<header class="app-guide-content">
-	<h1>{{ project.title }} - Front-end Guide</h1>
-</header>
-{% endblock %}
 
 {% block content %}
-<nav class="app-guide-nav">
-	<button class="ui-button-primary app-guide-toggle-menu js-toggle-menu">close menu</button>
-	<h3><a href="{{ webRoot + 'index.html' }}">Home</a></h3>
+<div class="page">
+	<div class="core-layout">
+		<header class="app-guide-content core-layout-header">
+			<img src="{{ pathToGuide }}assets/images/logo.svg"
+			     onerror="this.src='{{ pathToGuide }}/assets/images/logo.min.png'"
+			     alt="De Voorhoede"
+			     height="75" width="75"/>
+			<div class="core-layout-header-titles">
+				<h1>{{ project.title }}</h1>
+				<h2>Front-end guide for {{ project.title}} by de Voorhoede</h2>
+			</div>
+		</header>
 
-	{% if components.length > 0 %}
-	<h3>Components</h3>
-	<ul>
-		{% for component in components %}
-		<li>
-			<a href="{{ webRoot + 'modules/components/' + component + '/' + 'preview.html' }}">
-				{{ component | replace("-"," ") | capitalize }}
-			</a>
-		</li>
-		{% endfor %}
-	</ul>
-	{% endif %}
+<!--TODO: enable left menu?-->
+		<!--&lt;!&ndash;left menu&ndash;&gt;-->
+		<!--<nav class="app-guide-nav">-->
+			<!--<h3><a href="/">Home</a></h3>-->
 
-	{% if chapters.length > 0 %}
-	<h3>Documentation</h3>
-	<ul>
-		{% for chapter in chapters %}
-		<li>
-			<a href="{{ webRoot + 'modules/chapters/' + chapter + '/' + chapter + '.html' }}">
-				{{ chapter | replace("-"," ") | capitalize }}
-			</a>
-		</li>
-		{% endfor %}
-	</ul>
-	{% endif %}
+			<!--{% if components.length > 0 %}-->
+			<!--<h3>Components</h3>-->
+			<!--<ul>-->
+				<!--{% for component in components %}-->
+				<!--<li>-->
+					<!--<a href="{{ webRoot + 'modules/components/' + component + '/' + 'preview.html' }}">-->
+						<!--{{ component | replace("-"," ") | capitalize }}-->
+					<!--</a>-->
+				<!--</li>-->
+				<!--{% endfor %}-->
+			<!--</ul>-->
+			<!--{% endif %}-->
 
-	{% if views.length > 0 %}
-	<h3>Views</h3>
-	<ul>
-		{% for view in views %}
-		<li>
-			<a href="{{ webRoot + 'modules/views/' + view + '/' + view + '.html' }}">
-				{{ view | replace("-"," ") | capitalize }}
-			</a>
-		</li>
-		{% endfor %}
-	</ul>
-	{% endif %}
-</nav>
+			<!--{% if chapters.length > 0 %}-->
+			<!--<h3>Documentation</h3>-->
+			<!--<ul>-->
+				<!--{% for chapter in chapters %}-->
+				<!--<li>-->
+					<!--<a href="{{ webRoot + 'modules/chapters/' + chapter + '/' + chapter + '.html' }}">-->
+						<!--{{ chapter | replace("-"," ") | capitalize }}-->
+					<!--</a>-->
+				<!--</li>-->
+				<!--{% endfor %}-->
+			<!--</ul>-->
+			<!--{% endif %}-->
 
-<main class="app-guide-main">
-	{% block maincontent %}
+			<!--{% if views.length > 0 %}-->
+			<!--<h3>Views</h3>-->
+			<!--<ul>-->
+				<!--{% for view in views %}-->guide.scss
+				<!--<li>-->
+					<!--<a href="{{ webRoot + 'modules/views/' + view + '/' + view + '.html' }}">-->
+						<!--{{ view | replace("-"," ") | capitalize }}-->
+					<!--</a>-->
+				<!--</li>-->
+				<!--{% endfor %}-->
+			<!--</ul>-->
+			<!--{% endif %}-->
+		<!--</nav>-->
 
-	{% endblock %}
-</main>
+
+		<!--main content-->
+		{% block maincontent %}
+
+		{% endblock %}
+
+	</div>
+
+	<!-- site-background -->
+	<div class="site-background" data-component="site-background">
+
+		<div class="page-background">
+			<div class="background-pattern"></div>
+			<div class="bg-planes">
+				<!-- left planes -->
+				<div class="bg-plane bg-left-plane bg-left-plane-1"></div>
+				<div class="bg-plane bg-left-plane bg-left-plane-2"></div>
+				<div class="bg-plane bg-left-plane bg-plane-medium bg-left-plane-3"></div>
+				<div class="bg-plane bg-left-plane bg-left-plane-4"></div>
+				<div class="bg-plane bg-left-plane bg-left-plane-5"></div>
+				<div class="bg-plane bg-left-plane bg-plane-medium bg-left-plane-6"></div>
+				<div class="bg-plane bg-left-plane bg-plane-medium bg-left-plane-7"></div>
+				<div class="bg-plane bg-left-plane bg-left-plane-8"></div>
+				<div class="bg-plane bg-left-plane bg-left-plane-9"></div>
+				<div class="bg-plane bg-left-plane bg-left-plane-10"></div>
+				<div class="bg-plane bg-left-plane bg-left-plane-11"></div>
+				<!-- end of left planes -->
+
+				<!-- large planes -->
+				<div class="bg-plane bg-plane-large bg-middle-plane-1"></div>
+				<div class="bg-plane bg-plane-large bg-middle-plane-2"></div>
+				<div class="bg-plane bg-plane-large bg-middle-plane-3"></div>
+				<div class="bg-plane bg-plane-large bg-middle-plane-4"></div>
+				<div class="bg-plane bg-plane-large bg-middle-plane-5"></div>
+				<div class="bg-plane bg-plane-large bg-middle-plane-6"></div>
+				<!-- end of large planes -->
+
+				<!-- right planes -->
+				<div class="bg-plane bg-right-plane bg-right-plane-1"></div>
+				<div class="bg-plane bg-right-plane bg-right-plane-2"></div>
+				<div class="bg-plane bg-right-plane bg-right-plane-3"></div>
+				<div class="bg-plane bg-right-plane bg-plane-medium bg-right-plane-4"></div>
+				<div class="bg-plane bg-right-plane bg-right-plane-5"></div>
+				<div class="bg-plane bg-right-plane bg-plane-medium bg-right-plane-6"></div>
+				<div class="bg-plane bg-right-plane bg-right-plane-7"></div>
+				<div class="bg-plane bg-right-plane bg-right-plane-8"></div>
+				<div class="bg-plane bg-right-plane bg-right-plane-9"></div>
+				<div class="bg-plane bg-right-plane bg-right-plane-10"></div>
+				<div class="bg-plane bg-right-plane bg-plane-medium bg-right-plane-11"></div>
+				<div class="bg-plane bg-right-plane bg-right-plane-12"></div>
+				<div class="bg-plane bg-right-plane bg-right-plane-13"></div>
+				<div class="bg-plane bg-right-planebg-plane-medium bg-right-plane-14"></div>
+			</div>
+		</div>
+	</div>
+	<!-- /site-background -->
+
+</div>
 
 {% endblock %}
 
@@ -75,33 +139,4 @@
 <footer class="app-guide-footer">
 	This page is generated using <a href="http://voorhoede.nl">De Voorhoede</a>'s template builder
 </footer>
-{% endblock %}
-
-{% block scripts %}
-{{ super() }}
-<script>
-	(function(){
-		var nav = document.querySelector('.app-guide-nav'),
-			main = document.querySelector('.app-guide-main'),
-			toggleMenu = document.querySelector('.js-toggle-menu');
-
-		toggleMenu.addEventListener('click', function(event){
-			nav.classList.contains('is-hidden') ? expand() : collapse();
-		}, false);
-
-		var expand = function expand(){
-			nav.classList.remove('is-hidden');
-			main.classList.remove('nav-is-closed');
-			toggleMenu.innerHTML = 'close menu';
-		};
-
-		var collapse = function collapse(){
-			nav.classList.add('is-hidden');
-			main.classList.add('nav-is-closed');
-			toggleMenu.innerHTML = 'open menu';
-		};
-
-	})();
-</script>
-
 {% endblock %}

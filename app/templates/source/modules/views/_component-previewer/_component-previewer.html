@@ -22,114 +22,118 @@
 {% endblock %}
 
 {% block maincontent %}
-<script>window.testApp = {}; // namespace to register modules for testing</script>
-<h1>{{ name | replace("-"," ") | capitalize }}</h1>
-<div class="app-guide-content language-markdown">
-	{{ code.readme }}
-</div>
 
-{% if (mode == 'distribution') %}
-<div class="resize-buttons">
-	<button id="desktop">desktop</button>
-	<button id="phone">phone</button>
-	<button id="tablet">tablet</button>
-</div>
-
-<p>Or set your own width in px:</p>
-<form id="resize-form">
-	<label>
-		<span>Width</span>
-		<input type="number" name="width" id="resize-width" required/>
-	</label>
-	<button type="submit">Set!</button>
-</form>
-
-<iframe id="preview-iframe" src="object.html" width="100%" height="400px"></iframe>
-{% endif %}
-
-{% if (mode == 'distribution') %}
-{%  if hasTest %}
-<section id="section-tests" class="app-guide-section">
-	<h2 class="app-guide-section-title">
-		Tests {{ guide.linkSection('tests') }}
-	</h2>
-	<div id="html-reporter"></div>
-</section>
-{% endif %}
-{% endif %}
-
-{% if (mode == 'development') %}
-<section id="section-preview" class="app-guide-section">
-	<a class="app-guide-icon app-guide-icon-list app-guide-back"
-	   href="/" title="back to overview"></a>
-	<h2 class="app-guide-section-title">
-		Preview {{ guide.linkSection('preview') }}
-	</h2>
-	<div class="app-guide-preview-top">
-		<div class="app-guide-crop-mark"></div>
+<main class="app-guide-main panel">
+	<script>window.testApp = {}; // namespace to register modules for testing</script>
+	<header class="section-header" data-content="{{ name | replace('-',' ') | capitalize }}">
+		<h1 class="section-title" data-content="{{ name | replace('-',' ') | capitalize }}">{{ name | replace("-"," ") | capitalize }}</h1>
+	</header>
+	<div class="app-guide-content language-markdown">
+		{{ code.readme }}
 	</div>
-	<div class="app-guide-preview">
-		{{ code.html }}
-	</div>
-	<div class="app-guide-preview-bottom">
-		<div class="app-guide-crop-mark"></div>
-	</div>
-</section>
-{% endif %}
 
-<section id="section-code" class="app-guide-section">
-	<h2 class="app-guide-section-title">
-		Code {{ guide.linkSection('code') }}
-	</h2>
-	{# source code with syntax highlight using prismjs: http://prismjs.com/ #}
+	{% if (mode == 'distribution') %}
+	<div class="resize-buttons">
+		<button id="desktop">desktop</button>
+		<button id="phone">phone</button>
+		<button id="tablet">tablet</button>
+	</div>
 
-	{% if code.html %}
-	<section id="section-code-html">
-		<h3 class="app-guide-section-title">
-			HTML {{ guide.linkSection('code-html') }}
-		</h3>
-		<div class="app-guide-code">
-			<pre class="language-markup"><code>{{ code.html | replace("<","&lt;") }}</code></pre>
-			<ul class="app-guide-code-options">
-				<li><a class="app-guide-icon app-guide-icon-code" href="_{{name}}.html" title="view source HTML"></a></li>
-				<li><a class="app-guide-icon app-guide-icon-download" href="_{{name}}.html" download="_{{name}}.html" title="download HTML"></a></li>
-			</ul>
+	<p>Or set your own width in px:</p>
+	<form id="resize-form">
+		<label>
+			<span>Width</span>
+			<input type="number" name="width" id="resize-width" required/>
+		</label>
+		<button type="submit">Set!</button>
+	</form>
+
+	<iframe id="preview-iframe" src="object.html" width="100%" height="400px"></iframe>
+	{% endif %}
+
+	{% if (mode == 'distribution') %}
+	{%  if hasTest %}
+	<section id="section-tests" class="app-guide-section">
+		<h2 class="app-guide-section-title">
+			Tests {{ guide.linkSection('tests') }}
+		</h2>
+		<div id="html-reporter"></div>
+	</section>
+	{% endif %}
+	{% endif %}
+
+	{% if (mode == 'development') %}
+	<section id="section-preview" class="app-guide-section">
+		<a class="app-guide-icon app-guide-icon-list app-guide-back"
+		   href="/" title="back to overview"></a>
+		<h2 class="app-guide-section-title">
+			Preview {{ guide.linkSection('preview') }}
+		</h2>
+		<div class="app-guide-preview-top">
+			<div class="app-guide-crop-mark"></div>
+		</div>
+		<div class="app-guide-preview">
+			{{ code.html }}
+		</div>
+		<div class="app-guide-preview-bottom">
+			<div class="app-guide-crop-mark"></div>
 		</div>
 	</section>
 	{% endif %}
 
-	{% if code.css %}
-	<section id="section-code-css">
-		<h3 class="app-guide-section-title">
-			CSS {{ guide.linkSection('code-css') }}
-		</h3>
-		<div class="app-guide-code">
-			<pre class="language-css"><code>{{ code.css | replace("<","&lt;") }}</code></pre>
-			<ul class="app-guide-code-options">
-				<li><a class="app-guide-icon app-guide-icon-code" href="_{{name}}.css" title="view source CSS"></a></li>
-				<li><a class="app-guide-icon app-guide-icon-download" href="_{{name}}.css" download="_{{name}}.css" title="download CSS"></a></li>
-			</ul>
-		</div>
+	<section id="section-code" class="app-guide-section">
+		<h2 class="app-guide-section-title">
+			Code {{ guide.linkSection('code') }}
+		</h2>
+		{# source code with syntax highlight using prismjs: http://prismjs.com/ #}
+
+		{% if code.html %}
+		<section id="section-code-html">
+			<h3 class="app-guide-section-title">
+				HTML {{ guide.linkSection('code-html') }}
+			</h3>
+			<div class="app-guide-code">
+				<pre class="language-markup"><code>{{ code.html | replace("<","&lt;") }}</code></pre>
+				<ul class="app-guide-code-options">
+					<li><a class="app-guide-icon app-guide-icon-code" href="_{{name}}.html" title="view source HTML"></a></li>
+					<li><a class="app-guide-icon app-guide-icon-download" href="_{{name}}.html" download="_{{name}}.html" title="download HTML"></a></li>
+				</ul>
+			</div>
+		</section>
+		{% endif %}
+
+		{% if code.css %}
+		<section id="section-code-css">
+			<h3 class="app-guide-section-title">
+				CSS {{ guide.linkSection('code-css') }}
+			</h3>
+			<div class="app-guide-code">
+				<pre class="language-css"><code>{{ code.css | replace("<","&lt;") }}</code></pre>
+				<ul class="app-guide-code-options">
+					<li><a class="app-guide-icon app-guide-icon-code" href="_{{name}}.css" title="view source CSS"></a></li>
+					<li><a class="app-guide-icon app-guide-icon-download" href="_{{name}}.css" download="_{{name}}.css" title="download CSS"></a></li>
+				</ul>
+			</div>
+		</section>
+		{% endif %}
+
+		{% if code.js %}
+		<section id="section-code-javascript">
+			<h3 class="app-guide-section-title">
+				JS {{ guide.linkSection('code-js') }}
+			</h3>
+			<div class="app-guide-code">
+				<pre class="language-javascript"><code>{{ code.js | replace("<","&lt;") }}</code></pre>
+				<ul class="app-guide-code-options">
+					<li><a class="app-guide-icon app-guide-icon-code" href="_{{name}}.js" title="view source JavaScript"></a></li>
+					<li><a class="app-guide-icon app-guide-icon-download" href="_{{name}}.js" download="_{{name}}.js" title="download JavaScript"></a></li>
+				</ul>
+			</div>
+		</section>
+		{% endif %}
+
 	</section>
-	{% endif %}
-
-	{% if code.js %}
-	<section id="section-code-javascript">
-		<h3 class="app-guide-section-title">
-			JS {{ guide.linkSection('code-js') }}
-		</h3>
-		<div class="app-guide-code">
-			<pre class="language-javascript"><code>{{ code.js | replace("<","&lt;") }}</code></pre>
-			<ul class="app-guide-code-options">
-				<li><a class="app-guide-icon app-guide-icon-code" href="_{{name}}.js" title="view source JavaScript"></a></li>
-				<li><a class="app-guide-icon app-guide-icon-download" href="_{{name}}.js" download="_{{name}}.js" title="download JavaScript"></a></li>
-			</ul>
-		</div>
-	</section>
-	{% endif %}
-
-</section>
-
+</main>
 {% endblock %}
 
 {% block scripts %}
@@ -141,7 +145,7 @@
 
 	(function(){
 		var iframe = document.getElementById('preview-iframe'),
-				widthInput = document.getElementById('resize-width');
+			widthInput = document.getElementById('resize-width');
 
 		iframe.addEventListener('load', function(){
 			widthInput.value = parseInt(window.getComputedStyle(iframe).width);
@@ -180,12 +184,12 @@
 {% endif %}
 
 {% if (mode == 'distribution') %}
-	{% if hasTest %}
-	<script src="{{ webRoot }}guide/vendor/jasmine-2.0/jasmine.js"></script>
-	<script src="{{ webRoot }}guide/vendor/jasmine-2.0/jasmine-html.js"></script>
-	<script src="{{ webRoot }}guide/vendor/jasmine-2.0/boot-mod.js"></script>
-	<script src="{{ '_' + name + '.test.js' }}"></script>
-	{% endif %}
+{% if hasTest %}
+<script src="{{ webRoot }}guide/vendor/jasmine-2.0/jasmine.js"></script>
+<script src="{{ webRoot }}guide/vendor/jasmine-2.0/jasmine-html.js"></script>
+<script src="{{ webRoot }}guide/vendor/jasmine-2.0/boot-mod.js"></script>
+<script src="{{ '_' + name + '.test.js' }}"></script>
+{% endif %}
 {% endif %}
 
 

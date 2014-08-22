@@ -1,5 +1,5 @@
 {
-  "name": "<%= site_name %>",
+  "name": "voorhoede-front-end-guide-generator",
   "version": "0.0.0",
   "dependencies": {
       "voorhoede-core-styles" : null
