@@ -185,6 +185,9 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         }
         this.copy('tasks/grunt/tasks/_task-wizard.js', 'tasks/grunt/tasks/task-wizard.js');
 
+        // setup grunt templates
+        this.directory('tasks/grunt/templates', 'tasks/grunt/templates');
+
         // setup grunt utilities
         this.copy('tasks/grunt/utilities/_camelize.js', 'tasks/grunt/utilities/camelize.js');
         this.copy('tasks/grunt/utilities/_html-compiler.js', 'tasks/grunt/utilities/html-compiler.js');
@@ -194,9 +197,8 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         // make Gruntfile
         this.template("_Gruntfile.js", "Gruntfile.js", context);
 
-
-
-
+        // make bower.json
+        this.template("_bower.json", "bower.json", context);
 
         if (this.vhost) {
             this.template("_vhost-template.vhost", "source/" + context.site_name + ".vhost", context);
@@ -204,9 +206,9 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
 
         // handle css preprocessors
         if (this.cssPreprocessor === 'sass' ) {
-            this.mkdir('source/assets/scss');
+            this.directory('source/assets/scss','source/assets/scss');
         } else if (this.cssPreprocessor === 'sass-compass') {
-            this.mkdir('source/assets/scss');
+            this.directory('source/assets/scss','source/assets/scss');
         } else if (this.cssPreprocessor === 'less') {
             this.mkdir('source/assets/less');
         } else {
