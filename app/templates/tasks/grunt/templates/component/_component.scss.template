@@ -1,0 +1,8 @@
+@import "../../../assets/scss/variables";
+@import "../../../assets/scss/helpers";
+
+/* $_COMPONENT_NAME_$ component */
+
+.$_CSS_CLASS_$ {
+
+}
