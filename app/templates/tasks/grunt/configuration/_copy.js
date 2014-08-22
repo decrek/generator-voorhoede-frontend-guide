@@ -19,6 +19,11 @@ function getConfiguration(grunt) {
                 dest: 'web/guide/'
             }, {
                 expand: true,
+                cwd: 'source/vendor/prismjs/',
+                src: ['**'],
+                dest: 'web/guide/vendor/prismjs/'
+            }, {
+                expand: true,
                 cwd: 'source/modules/',
                 src: ['**'],
                 dest: 'web/modules/'

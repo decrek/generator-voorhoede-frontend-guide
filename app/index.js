@@ -123,7 +123,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.copy('source/modules/views/_style-guide/_style-guide.html', 'source/modules/views/_style-guide/_style-guide.html');
 
         // make vendor scaffold
-        this.mkdir('source/vendor');
+        this.directory('source/vendor', 'source/vendor');
 
         // make tasks structure
         this.mkdir('tasks');
