@@ -23,11 +23,9 @@
 
 {% block maincontent %}
 
-<main class="app-guide-main panel">
+<main class="app-guide-main">
 	<script>window.testApp = {}; // namespace to register modules for testing</script>
-	<header class="section-header" data-content="{{ name | replace('-',' ') | capitalize }}">
-		<h1 class="section-title" data-content="{{ name | replace('-',' ') | capitalize }}">{{ name | replace("-"," ") | capitalize }}</h1>
-	</header>
+	<h1 class="section-title">{{ name | replace("-"," ") | capitalize }}</h1>
 	<div class="app-guide-content language-markdown">
 		{{ code.readme }}
 	</div>

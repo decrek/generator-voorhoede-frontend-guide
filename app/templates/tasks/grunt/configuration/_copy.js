@@ -9,14 +9,12 @@ function getConfiguration(grunt) {
             files: [{
                 src: 'web/modules/views/_style-guide/_style-guide.html',
                 dest: 'web/guide/style-guide.html'
-            }, {
-                src: 'bower_components/voorhoede-core-styles/core.css',
-                dest: 'web/guide/voorhoede-core-styles.css'
-            }, {
+            },
+            {
                 expand: true,
-                cwd: 'bower_components/voorhoede-core-styles/',
+                cwd: 'source/assets/images/guide/',
                 src: ['**'],
-                dest: 'web/guide/'
+                dest: 'web/guide/images/'
             }, {
                 expand: true,
                 cwd: 'source/vendor/',

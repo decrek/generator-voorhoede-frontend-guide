@@ -3,24 +3,6 @@
 
 @import '../../vendor/app-guide-font/app-guide-font';
 
-.app-guide-main {
-    .section-header {
-        z-index: 0;
-
-        &:before {
-            font-size: 50px;
-            top: initial;
-        }
-        .section-title, &:before, &:after {
-            font-size: 50px;
-            top: initial;
-        }
-        &:after {
-            top: 1em;
-        }
-    }
-}
-
 $guide-link-color: #ADBCC7;
 $guide-graphic-color: #708091;
 $guide-swatch-size: 80px;

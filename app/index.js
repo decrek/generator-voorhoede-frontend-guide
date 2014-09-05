@@ -97,7 +97,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
 
         // make assets scaffold
         this.mkdir('source/assets');
-        this.mkdir('source/assets/images');
+        this.directory('source/assets/images', 'source/assets/images');
 //        if (this.grunticon) {
 //          this.mkdir('source/assets/grunticon-svgs');
 //        }
