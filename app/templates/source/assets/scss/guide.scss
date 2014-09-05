@@ -1,6 +1,8 @@
 @import 'variables';
 @import 'helpers';
 
+@import '../../vendor/app-guide-font/app-guide-font';
+
 .app-guide-main {
     .section-header {
         z-index: 0;
@@ -17,4 +19,346 @@
             top: 1em;
         }
     }
+}
+
+$guide-link-color: #ADBCC7;
+$guide-graphic-color: #708091;
+$guide-swatch-size: 80px;
+$guide-box-size: 126px;
+
+html {
+    padding: 0 10px;
+}
+
+.app-guide-section {
+    padding: .5em 1.5em;
+}
+
+.app-guide-content {
+    p {
+        max-width: 48em;
+        font-size: 1em;
+        line-height: 1.5em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+}
+
+.app-guide-section-title {
+    position: relative;
+}
+
+a.app-guide-icon {
+    color: $guide-link-color;
+    text-decoration: none;
+}
+
+.app-guide-permalink {
+    position: absolute;
+    left: -1.5em;
+    font-size: .7em;
+    margin-top: .5em;
+    text-decoration: none;
+
+    &:before {
+        content: '\e602';
+    }
+}
+
+.app-guide-example {
+    padding: 1.5em 10px;
+}
+
+.app-guide-preview {
+    position: relative;
+    @include clearfix();
+}
+
+.app-guide-preview-top,
+.app-guide-preview-bottom {
+    position: relative;
+}
+
+.app-guide-preview-top {
+    margin-top: 2em;
+}
+
+.app-guide-preview-bottom {
+    margin-bottom: 2em;
+}
+
+.app-guide-crop-mark {
+    position: relative;
+    &:before,
+    &:after {
+        content: " ";
+        display: block;
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        border-color: $guide-graphic-color;
+        border-style: solid;
+    }
+    &:before {
+        left: -1em;
+    }
+    &:after {
+        right: -1em;
+    }
+}
+.app-guide-preview-top .app-guide-crop-mark {
+    &:before,
+    &:after {
+        top: -1em;
+    }
+    &:before {
+        border-width: 0 2px 2px 0;
+    }
+    &:after {
+        border-width: 0 0 2px 2px;
+    }
+}
+.app-guide-preview-bottom .app-guide-crop-mark {
+    &:before {
+        border-width: 2px 2px 0 0;
+    }
+    &:after {
+        border-width: 2px 0 0 2px;
+    }
+}
+
+.app-guide-code {
+    position: relative;
+}
+
+.app-guide-code-options {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+    background: $guide-graphic-color;
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        color: white;
+        padding: 2px 3px;
+    }
+}
+
+.app-guide-footer {
+    margin: 1em 0;
+    clear:both;
+    text-align: center;
+}
+
+.app-guide-swatches {
+    @include clearfix();
+}
+
+.app-guide-swatch {
+    display: block;
+    border-width: 16px;
+    border-style: solid;
+    border-color: #e3e3e3;
+    margin: 0 auto;
+    width:  $guide-swatch-size;
+    height: $guide-swatch-size;
+}
+
+// yellow
+
+//[title="yellow-dark"] .app-guide-swatch {
+//    background-color: $yellow-dark;
+//}
+//
+//[title="yellow-medium"] .app-guide-swatch {
+//    background-color: $yellow-medium;
+//}
+//
+//[title="yellow-pale"] .app-guide-swatch {
+//    background-color: $yellow-pale;
+//}
+//
+//[title="yellow-light"] .app-guide-swatch {
+//    background-color: $yellow-light;
+//}
+//
+//// blue
+//
+//[title="blue-extra-light"] .app-guide-swatch {
+//    background-color: $blue-extra-light;
+//}
+//
+//[title="blue-light-pale"] .app-guide-swatch {
+//    background-color: $blue-light-pale;
+//}
+//
+//[title="blue-light"] .app-guide-swatch {
+//    background-color: $blue-light;
+//}
+//
+//[title="blue-medium-pale"] .app-guide-swatch {
+//    background-color: $blue-medium-pale;
+//}
+//
+//[title="blue-medium"] .app-guide-swatch {
+//    background-color: $blue-medium;
+//}
+//
+//[title="blue-dark"] .app-guide-swatch {
+//    background-color: $blue-dark;
+//}
+//
+//[title="blue-darker"] .app-guide-swatch {
+//    background-color: $blue-darker;
+//}
+//
+//// grey
+//
+//[title="grey-extra-light"] .app-guide-swatch {
+//    background-color: $grey-extra-light;
+//}
+//
+//[title="grey-lighter"] .app-guide-swatch {
+//    background-color: $grey-lighter;
+//}
+//
+//[title="grey-light-pale"] .app-guide-swatch {
+//    background-color: $grey-light-pale;
+//}
+//
+//[title="grey-light"] .app-guide-swatch {
+//    background-color: $grey-light;
+//}
+//
+//[title="grey-medium"] .app-guide-swatch {
+//    background-color: $grey-medium;
+//}
+//
+//// social icon colors
+//
+//
+//[title="facebook-color"] .app-guide-swatch {
+//    background-color: $facebook-color;
+//}
+//
+//[title="twitter-color"] .app-guide-swatch {
+//    background-color: $twitter-color;
+//}
+//
+//[title="google-color"] .app-guide-swatch {
+//    background-color: $google-color;
+//}
+//
+//[title="instagram-color"] .app-guide-swatch {
+//    background-color: $instagram-color;
+//}
+//
+//[title="pinterest-color"] .app-guide-swatch {
+//    background-color: $pinterest-color;
+//}
+//
+//[title="linkedin-color"] .app-guide-swatch {
+//    background-color: $linkedin-color;
+//}
+//
+//[title="youtube-color"] .app-guide-swatch {
+//    background-color: $youtube-color;
+//}
+
+.app-guide-swatches li {
+    float: left;
+    width: 120px;
+}
+
+.app-guide-info {
+    display: block;
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 0.9em;
+}
+
+// icons
+
+.social-media-links {
+    @include clearfix;
+
+    li {
+        float: left;
+        margin-right: 12px;
+    }
+}
+
+// chapter content
+
+.app-guide-chapter-content {
+    ul {
+        list-style: disc;
+    }
+}
+
+// guide grid
+
+.app-guide-nav, .app-guide-main {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+@media screen and (min-width: 720px) {
+    .app-guide-nav {
+        width: 25%;
+        float: left;
+        transition: .3s all;
+        opacity: 1;
+    }
+
+    .app-guide-nav.is-hidden {
+        margin-left: -50%;
+    }
+
+    .app-guide-main {
+//        width: 75%;
+        float:left;
+        transition: .3s all;
+    }
+
+    .app-guide-main.nav-is-closed {
+        width: 100%;
+    }
+
+}
+
+// guide resize iframe
+
+iframe {
+    transition: all .5s ease-in;
+}
+
+.resize-buttons {
+    display: block;
+}
+
+
+// styling specific elements for the styleguide
+
+.ui-link-background {
+    background-color:#5f92cd;
+}
+
+// toggle menu button
+.app-guide-toggle-menu {
+    position: absolute;
+    right: 10px;
+}
+.app-guide-nav.is-hidden .app-guide-toggle-menu {
+    position:fixed;
+    left: 0;
+    z-index: 1;
 }
