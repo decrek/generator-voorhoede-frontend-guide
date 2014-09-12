@@ -158,11 +158,11 @@
 		<h2 class="app-guide-section-title">
 			Icons {{ guide.linkSection('icons') }}
 		</h2>
-		<div class="app-guide-section-content">
+		<div class="app-guide-section-content"><% if (grunticon) { %>
 			<p>
 				Note: Icons are managed using Grunticon, preferring SVG icons and providing
 				a PNG fallback for browsers not supporting SVG.
-			</p>
+			</p><% } %>
 			<h3 class="app-guide-section-title">Social media icons</h3>
 			<ul class="social-media-links">
 				<li><a href="#" title="Facebook" class="icon-facebook social-media-link"></a></li>

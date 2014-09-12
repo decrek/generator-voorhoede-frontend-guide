@@ -9,8 +9,8 @@ module.exports = function (grunt) {
         'connect',
         'copy',
         'csslint',
-        'cssmin',
-//        'grunticon',
+        'cssmin',<% if (grunticon) { %>
+        'grunticon',<% } %>
         'jsbeautifier',
         'jshint',
         'prompt',<% if (cssPreprocessor === 'sass' || cssPreprocessor === 'sass-compass') { %>

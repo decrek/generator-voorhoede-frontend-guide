@@ -26,29 +26,16 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.log(yosay('Welcome to the marvelous VoorhoedeFrontEndGuide generator!'));
 
         var prompts = [{
-            name: 'appName',
-            message: 'What is your app\'s name?'
-        }
-//            ,{
-//            type: 'confirm',
-//            name: 'someOption',
-//            message: 'Would you like to have package and bower?',
-//            default: true
-//        }
-            ,{
+                name: 'appName',
+                message: 'What is your app\'s name?'
+            },
+            {
                 type: 'confirm',
                 name: 'vhost',
                 message: 'Would you like to generate a vhost example file?',
                 default: true
-            }
-//            ,{
-//                when: function (response) {
-//                    return response.vhost;
-//                },
-//                name: 'development-server-name',
-//                message: 'In your vhost example, what should be the development server name? (e.g \' local.my-project.voorhoede.nl\')'
-//            }
-            ,{
+            },
+            {
                 type: 'list',
                 name: 'cssPreprocessor',
                 message: 'Would you like to use a css preprocessor?',
@@ -77,6 +64,12 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
                 name: 'svgMinification',
                 message: 'Are you using SVG\'s and want to include SVG minification?',
                 default: true
+            },
+            {
+                type: 'confirm',
+                name: 'grunticon',
+                message: 'Do you want to use Grunticon for your icons?',
+                default: true
             }
 
         ];
@@ -87,6 +80,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             this.cssPreprocessor = props.cssPreprocessor;
             this.testing = props.testing;
             this.svgMinification = props.svgMinification;
+            this.grunticon = props.grunticon;
 
             this.someOption = props.someOption;
 
@@ -104,7 +98,8 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             cwd: process.cwd(),
             cssPreprocessor: this.cssPreprocessor,
             testing: this.testing,
-            svgMinification: this.svgMinification
+            svgMinification: this.svgMinification,
+            grunticon: this.grunticon
         };
 
         // make base dir
@@ -113,9 +108,9 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         // make assets scaffold
         this.mkdir('source/assets');
         this.directory('source/assets/images', 'source/assets/images');
-//        if (this.grunticon) {
-//          this.mkdir('source/assets/grunticon-svgs');
-//        }
+        if (this.grunticon) {
+          this.mkdir('source/assets/images/grunticon-svgs');
+        }
         this.mkdir('source/assets/scripts');
         this.copy('source/assets/_scripts.json', 'source/assets/scripts.json');
 
@@ -128,14 +123,13 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
 
         // setup frontend guide templates
         this.copy('source/modules/views/_app-index/_app-index.html', 'source/modules/views/_app-index/app-index.html');
-        this.copy('source/modules/views/_base-view/_base-view.html', 'source/modules/views/_base-view/base-view.html');
+        this.template('source/modules/views/_base-view/_base-view.html', 'source/modules/views/_base-view/base-view.html', context);
         this.copy('source/modules/views/_chapter-template/_chapter-template.html', 'source/modules/views/_chapter-template/chapter-template.html');
         this.copy('source/modules/views/_component-previewer/_component-previewer.html', 'source/modules/views/_component-previewer/component-previewer.html');
         this.copy('source/modules/views/_component-previewer/_component-previewer-object.html', 'source/modules/views/_component-previewer/component-previewer-object.html');
         this.copy('source/modules/views/_component-previewer/_README.md', 'source/modules/views/_component-previewer/README.md');
         this.copy('source/modules/views/_guide/_guide.html', 'source/modules/views/_guide/guide.html');
-        // undescore in output is correct(check why)
-        this.copy('source/modules/views/_style-guide/_style-guide.html', 'source/modules/views/_style-guide/_style-guide.html');
+        this.template('source/modules/views/_style-guide/_style-guide.html', 'source/modules/views/_style-guide/_style-guide.html', context);
 
         // make vendor scaffold
         this.directory('source/vendor', 'source/vendor');
@@ -159,9 +153,9 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.copy('tasks/grunt/configuration/_copy.js', 'tasks/grunt/configuration/copy.js');
         this.copy('tasks/grunt/configuration/_csslint.js', 'tasks/grunt/configuration/csslint.js');
         this.template("tasks/grunt/configuration/_cssmin.js", "tasks/grunt/configuration/cssmin.js", context);
-//        if (this.grunticon) {
-//          this.copy('tasks/grunt/configuration/_grunticon.js', 'tasks/grunt/configuration/grunticon.js');
-//        }
+        if (this.grunticon) {
+          this.copy('tasks/grunt/configuration/_grunticon.js', 'tasks/grunt/configuration/grunticon.js');
+        }
         this.copy('tasks/grunt/configuration/_index.js', 'tasks/grunt/configuration/index.js');
         this.copy('tasks/grunt/configuration/_jsbeautifier.js', 'tasks/grunt/configuration/jsbeautifier.js');
         this.copy('tasks/grunt/configuration/_jshint.js', 'tasks/grunt/configuration/jshint.js');
