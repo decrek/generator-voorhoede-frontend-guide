@@ -14,8 +14,8 @@ module.exports = function (grunt) {
         'jsbeautifier',
         'jshint',
         'prompt',<% if (cssPreprocessor === 'sass' || cssPreprocessor === 'sass-compass') { %>
-        'sass',<% } %>
-//        'svgmin',
+        'sass',<% } %><% if (svgMinification) { %>
+        'svgmin',<% } %>
         'uglify',
         'watch'
     ]);

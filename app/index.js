@@ -71,6 +71,12 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
                 name: 'testing',
                 message: 'Would you like to add the Jasmine testing framework with a Karma test runner?',
                 default: true
+            },
+            {
+                type: 'confirm',
+                name: 'svgMinification',
+                message: 'Are you using SVG\'s and want to include SVG minification?',
+                default: true
             }
 
         ];
@@ -80,6 +86,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             this.vhost = props.vhost;
             this.cssPreprocessor = props.cssPreprocessor;
             this.testing = props.testing;
+            this.svgMinification = props.svgMinification;
 
             this.someOption = props.someOption;
 
@@ -96,7 +103,8 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             site_name: this.appName,
             cwd: process.cwd(),
             cssPreprocessor: this.cssPreprocessor,
-            testing: this.testing
+            testing: this.testing,
+            svgMinification: this.svgMinification
         };
 
         // make base dir
@@ -162,9 +170,9 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         if (this.cssPreprocessor === 'sass' || this.cssPreprocessor === 'sass-compass') {
             this.copy('tasks/grunt/configuration/_sass.js', 'tasks/grunt/configuration/sass.js');
         }
-//        if (this.svgMinification) {
-//            this.copy('tasks/grunt/configuration/_svgmin.js', 'tasks/grunt/configuration/svgmin.js');
-//        }
+        if (this.svgMinification) {
+            this.copy('tasks/grunt/configuration/_svgmin.js', 'tasks/grunt/configuration/svgmin.js');
+        }
         this.copy('tasks/grunt/configuration/_uglify.js', 'tasks/grunt/configuration/uglify.js');
         this.copy('tasks/grunt/configuration/_watch.js', 'tasks/grunt/configuration/watch.js');
 

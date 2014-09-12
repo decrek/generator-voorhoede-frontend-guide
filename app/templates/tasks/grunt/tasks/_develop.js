@@ -5,8 +5,8 @@ module.exports = function (grunt) {
         'Setup web dir for development and watch source',
         function (mode) {
 
-            var tasks = [
-//                'svgmin',
+            var tasks = [<% if (svgMinification) { %>
+                'svgmin',<% } %>
 //                'grunticon',
                 'copy:development',
                 'compile-html:development',
