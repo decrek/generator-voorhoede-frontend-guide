@@ -11,8 +11,8 @@ module.exports = function (grunt) {
                 'compile-previews:development',
                 'compile-index:development',<% if (cssPreprocessor === 'sass' || cssPreprocessor === 'sass-compass') { %>
                 'sass:developmentServer',<% } %>
-                'concat:development',
-                'karma:singlerun'
+                'concat:development'<% if (testing) { %>,
+                'karma:singlerun'<% } %>
             ];
 
             if(mode !== 'no-watch'){
