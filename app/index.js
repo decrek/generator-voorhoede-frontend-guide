@@ -95,7 +95,8 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         var context = {
             site_name: this.appName,
             cwd: process.cwd(),
-            cssPreprocessor: this.cssPreprocessor
+            cssPreprocessor: this.cssPreprocessor,
+            testing: this.testing
         };
 
         // make base dir
