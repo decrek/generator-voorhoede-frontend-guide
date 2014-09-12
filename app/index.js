@@ -65,6 +65,12 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
                     name: 'F that, I will use pure css!',
                     value: 'pure'
                 }]
+            },
+            {
+                type: 'confirm',
+                name: 'testing',
+                message: 'Would you like to add the Jasmine testing framework with a Karma test runner?',
+                default: true
             }
 
         ];
@@ -73,7 +79,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             this.appName = props.appName;
             this.vhost = props.vhost;
             this.cssPreprocessor = props.cssPreprocessor;
-
+            this.testing = props.testing;
 
             this.someOption = props.someOption;
 
@@ -173,9 +179,9 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.template("tasks/grunt/tasks/_deploy.js", "tasks/grunt/tasks/deploy.js", context);
         this.template("tasks/grunt/tasks/_develop.js", "tasks/grunt/tasks/develop.js", context);
         this.template("tasks/grunt/tasks/_develop-server.js", "tasks/grunt/tasks/develop-server.js", context);
-//        if (this.karma) {
-//          this.copy('tasks/grunt/tasks/_karma.js', 'tasks/grunt/tasks/karma.js');
-//        }
+        if (this.testing) {
+          this.copy('tasks/grunt/tasks/_karma.js', 'tasks/grunt/tasks/karma.js');
+        }
         this.copy('tasks/grunt/tasks/_list-modules.js', 'tasks/grunt/tasks/list-modules.js');
         this.copy('tasks/grunt/tasks/_list-tasks.js', 'tasks/grunt/tasks/list-tasks.js');
         this.copy('tasks/grunt/tasks/_remove-component.js', 'tasks/grunt/tasks/remove-component.js');
@@ -214,6 +220,11 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         } else {
             // plain css
             this.mkdir('source/assets/css');
+        }
+
+        // setup testing
+        if (this.testing) {
+            this.directory('test', 'test');
         }
 
         this.template('_package.json', 'package.json', context);
