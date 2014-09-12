@@ -70,6 +70,12 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
                 name: 'grunticon',
                 message: 'Do you want to use Grunticon for your icons?',
                 default: true
+            },
+            {
+                type: 'confirm',
+                name: 'respondjs',
+                message: 'Do you want to use respond.js for browsers not supporting media queries?',
+                default: true
             }
 
         ];
@@ -81,8 +87,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             this.testing = props.testing;
             this.svgMinification = props.svgMinification;
             this.grunticon = props.grunticon;
-
-            this.someOption = props.someOption;
+            this.respondjs = props.respondjs;
 
             this.app();
             this.projectfiles();
@@ -99,7 +104,8 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             cssPreprocessor: this.cssPreprocessor,
             testing: this.testing,
             svgMinification: this.svgMinification,
-            grunticon: this.grunticon
+            grunticon: this.grunticon,
+            respondjs: this.respondjs
         };
 
         // make base dir
@@ -132,7 +138,12 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.template('source/modules/views/_style-guide/_style-guide.html', 'source/modules/views/_style-guide/_style-guide.html', context);
 
         // make vendor scaffold
-        this.directory('source/vendor', 'source/vendor');
+        this.mkdir('source/vendor');
+        this.directory('source/vendor/app-guide-font', 'source/vendor/app-guide-font');
+        this.directory('source/vendor/prismjs', 'source/vendor/prismjs');
+        if (this.respondjs) {
+            this.directory('source/vendor/respondjs','source/vendor/respondjs');
+        }
 
         // make tasks structure
         this.mkdir('tasks');
@@ -147,7 +158,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.copy('tasks/grunt/configuration/_bump.js', 'tasks/grunt/configuration/bump.js');
         this.copy('tasks/grunt/configuration/_clean.js', 'tasks/grunt/configuration/clean.js');
         this.copy('tasks/grunt/configuration/_compress.js', 'tasks/grunt/configuration/compress.js');
-        this.copy('tasks/grunt/configuration/_concat.js', 'tasks/grunt/configuration/concat.js');
+        this.template('tasks/grunt/configuration/_concat.js', 'tasks/grunt/configuration/concat.js', context);
         this.copy('tasks/grunt/configuration/_connect.js', 'tasks/grunt/configuration/connect.js');
         this.copy('tasks/grunt/configuration/_connect.js', 'tasks/grunt/configuration/connect.js');
         this.copy('tasks/grunt/configuration/_copy.js', 'tasks/grunt/configuration/copy.js');

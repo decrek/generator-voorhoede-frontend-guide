@@ -50,7 +50,7 @@
 	</noscript>
 	<% } %>
 	{% block styles %}
-	<link rel="stylesheet" href="{{ pathToAssets }}style/main.css" />
+	<link rel="stylesheet" href="{{ pathToAssets }}style/main.css" /><% if (respondjs) { %>
     <!--  respond.js  -->
 	<script>
 		// feature test borrowed from: https://github.com/scottjehl/Respond/blob/master/src/respond.js#L68
@@ -60,8 +60,7 @@
 				document.write('<script src="{{pathToAssets}}scripts/respond.js"><\/script>');
 			}
 		}(window));
-	</script>
-
+	</script><% } %>
 
 	<!-- TODO: check if this can be moved to the tail -->
 	<!-- Google DFP-->

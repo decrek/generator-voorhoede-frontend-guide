@@ -27,8 +27,8 @@ function getConfiguration(grunt) {
 			});
 			return sources;
 		}());
-		files[destination + '/assets/scripts/debug.js'] = ['source/assets/scripts/debug.js'];
-		files[destination + '/assets/scripts/respond.js'] = ['source/vendor/respondjs/respond.js'];
+		files[destination + '/assets/scripts/debug.js'] = ['source/assets/scripts/debug.js'];<% if (respondjs) { %>
+		files[destination + '/assets/scripts/respond.js'] = ['source/vendor/respondjs/respond.js'];<% } %>
 		return files;
 	}
 
