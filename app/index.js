@@ -76,7 +76,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         ];
 
         this.prompt(prompts, function (props) {
-            this.appName = props.appName;
+            this.appName = this._.slugify(props.appName);
             this.vhost = props.vhost;
             this.cssPreprocessor = props.cssPreprocessor;
             this.testing = props.testing;
