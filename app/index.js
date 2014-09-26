@@ -244,9 +244,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.template('_README.md', 'README.md', context);
 
         // handle css preprocessors
-        if (this.cssPreprocessor === 'sass' ) {
-            this.directory('source/assets/scss','source/assets/scss');
-        } else if (this.cssPreprocessor === 'sass-compass') {
+        if (this.cssPreprocessor === 'sass' || this.cssPreprocessor === 'sass-compass' ) {
             this.directory('source/assets/scss','source/assets/scss');
         } else if (this.cssPreprocessor === 'less') {
             this.mkdir('source/assets/less');
