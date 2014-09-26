@@ -30,10 +30,19 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
                 message: 'What is your app\'s name?'
             },
             {
-                type: 'confirm',
-                name: 'vhost',
-                message: 'Would you like to generate a vhost example file?',
-                default: true
+                type: 'list',
+                name: 'serverConfig',
+                message: 'How do you want to develop locally?',
+                choices: [{
+                    name: 'Generate a vhost example, I will use it to setup my own webserver.',
+                    value: 'vhost'
+                }, {
+                    name: 'Give me a build in webserver!',
+                    value: 'server'
+                }, {
+                    name: 'I don\'t know, give me both.',
+                    value: 'all'
+                }]
             },
             {
                 type: 'list',
@@ -82,7 +91,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
 
         this.prompt(prompts, function (props) {
             this.appName = this._.slugify(props.appName);
-            this.vhost = props.vhost;
+            this.serverConfig = props.serverConfig;
             this.cssPreprocessor = props.cssPreprocessor;
             this.testing = props.testing;
             this.svgMinification = props.svgMinification;
@@ -105,7 +114,8 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             testing: this.testing,
             svgMinification: this.svgMinification,
             grunticon: this.grunticon,
-            respondjs: this.respondjs
+            respondjs: this.respondjs,
+            serverConfig: this.serverConfig
         };
 
         // make base dir
@@ -204,8 +214,9 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             this.copy('tasks/grunt/tasks/_sass-and-lint.js', 'tasks/grunt/tasks/sass-and-lint.js');
         }
         this.copy('tasks/grunt/tasks/_task-wizard.js', 'tasks/grunt/tasks/task-wizard.js');
-        this.copy('tasks/grunt/tasks/_server.js', 'tasks/grunt/tasks/server.js');
-
+        if (this.serverConfig === 'server' || this.serverConfig === 'all') {
+            this.copy('tasks/grunt/tasks/_server.js', 'tasks/grunt/tasks/server.js');
+        }
         // setup grunt templates
         this.directory('tasks/grunt/templates', 'tasks/grunt/templates');
 
@@ -222,12 +233,15 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         this.template("_bower.json", "bower.json", context);
 
         // generate vhost file
-        if (this.vhost) {
-            this.template("_vhost-template.vhost", "source/" + context.site_name + ".vhost", context);
+        if (this.serverConfig === 'vhost' || this.serverConfig === 'all') {
+            this.template("_vhost-template.vhost", "sample/" + context.site_name + ".vhost", context);
         }
 
         // create .gitignore
         this.template('_.gitignore', '.gitignore', context);
+
+        // create README.md
+        this.template('_README.md', 'README.md', context);
 
         // handle css preprocessors
         if (this.cssPreprocessor === 'sass' ) {
