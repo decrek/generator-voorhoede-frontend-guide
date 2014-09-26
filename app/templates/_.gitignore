@@ -1,0 +1,47 @@
+distribution
+web/assets/scripts/*
+web/assets/styles/*
+web/modules/*
+web/guide/*.html
+web/index.html
+
+# Test reports
+test/coverage
+test/report
+<% if (cssPreprocessor === 'sass' || cssPreprocessor === 'sass-compass') { %>
+# Compiled CSS files
+*.css
+!source/vendor/**/*.css<% if (grunticon) { %>
+!source/assets/images/grunticon-output/*.css<% } %><% } %>
+
+# OS
+.DS_Store
+thumbs.db
+
+# Cache directories
+.bower
+.cache<% if (cssPreprocessor === 'sass' || cssPreprocessor === 'sass-compass') { %>
+.sass-cache
+.scss-cache<% } %>
+
+# Source maps
+# *.js.map<% if (cssPreprocessor === 'sass' || cssPreprocessor === 'sass-compass') { %>
+*.css.map<% } %>
+
+# Editor/IDE files
+*.iml
+*.ipr
+*.iws
+.idea
+*.sublime-workspace
+*.swp
+nb-configuration.xml
+nbactions.xml
+nbproject/private
+
+# Server logs
+log
+logs
+
+# Node
+node_modules

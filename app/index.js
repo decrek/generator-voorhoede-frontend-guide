@@ -221,9 +221,13 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         // make bower.json
         this.template("_bower.json", "bower.json", context);
 
+        // generate vhost file
         if (this.vhost) {
             this.template("_vhost-template.vhost", "source/" + context.site_name + ".vhost", context);
         }
+
+        // create .gitignore
+        this.template('_.gitignore', '.gitignore', context);
 
         // handle css preprocessors
         if (this.cssPreprocessor === 'sass' ) {
