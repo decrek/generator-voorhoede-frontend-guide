@@ -13,7 +13,8 @@ module.exports = function (grunt) {
                 'compile-previews:development',
                 'compile-index:development',<% if (cssPreprocessor === 'sass' || cssPreprocessor === 'sass-compass') { %>
                 'sass:development',<% } %>
-                'concat:development'
+                'concat:development',
+                'server'
             ];
 
             if(mode !== 'no-watch'){

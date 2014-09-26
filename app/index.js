@@ -204,6 +204,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             this.copy('tasks/grunt/tasks/_sass-and-lint.js', 'tasks/grunt/tasks/sass-and-lint.js');
         }
         this.copy('tasks/grunt/tasks/_task-wizard.js', 'tasks/grunt/tasks/task-wizard.js');
+        this.copy('tasks/grunt/tasks/_server.js', 'tasks/grunt/tasks/server.js');
 
         // setup grunt templates
         this.directory('tasks/grunt/templates', 'tasks/grunt/templates');
