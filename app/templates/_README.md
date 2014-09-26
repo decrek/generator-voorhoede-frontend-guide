@@ -8,7 +8,7 @@ __Clone repository__
 
 This project is hosted as a Voorhoede GIT repository. Clone it:
 
-	$ git clone git@bitbucket.org:voorhoede/2dehands-be.git<% if (serverConfig === 'vhost' || serverConfig === 'all') { %>	
+	$ git clone <%= repositoryUrl %><% if (serverConfig === 'vhost' || serverConfig === 'all') { %>	
 
 __Configure vhost__ <%= site_name %>
 

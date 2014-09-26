@@ -28,6 +28,9 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
         var prompts = [{
                 name: 'appName',
                 message: 'What is your app\'s name?'
+            },{
+                name: 'repositoryUrl',
+                message: 'What is your repository url? (e.g. git@github.com:decrek/generator-voorhoede-frontend-guide.git)'
             },
             {
                 type: 'list',
@@ -97,6 +100,7 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             this.svgMinification = props.svgMinification;
             this.grunticon = props.grunticon;
             this.respondjs = props.respondjs;
+            this.repositoryUrl = props.repositoryUrl;
 
             this.app();
             this.projectfiles();
@@ -115,7 +119,8 @@ var VoorhoedeFrontEndGuideGenerator = yeoman.generators.Base.extend({
             svgMinification: this.svgMinification,
             grunticon: this.grunticon,
             respondjs: this.respondjs,
-            serverConfig: this.serverConfig
+            serverConfig: this.serverConfig,
+            repositoryUrl: this.repositoryUrl
         };
 
         // make base dir
